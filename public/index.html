@@ -1,4 +1,4 @@
-<html>
+<!-- <html>
   <head>
     <style>
       body {
@@ -35,4 +35,83 @@
     <script src="./js/eventListeners.js"></script>
     <script src="./js/index.js"></script>
   </body>
+</html> -->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Chessboard with Pieces</title>
+  <style>
+    .chessboard {
+      display: grid;
+      grid-template-columns: repeat(8, 50px);
+      grid-template-rows: repeat(8, 50px);
+    }
+
+    .square {
+      width: 50px;
+      height: 50px;
+      text-align: center;
+      vertical-align: middle;
+      font-size: 24px;
+    }
+
+    .white {
+      background-color: #fff;
+    }
+
+    .black {
+      background-color: #000;
+      color: #fff;
+    }
+
+    .chess-piece {
+      font-family: Arial, sans-serif;
+      font-size: 40px;
+    }
+  </style>
+</head>
+<body>
+  <div class="chessboard" id="chessboard"></div>
+  <script>
+    const chessboard = document.getElementById("chessboard");
+
+    // Create an 8x8 chessboard
+    for (let row = 0; row < 8; row++) {
+      for (let col = 0; col < 8; col++) {
+        const square = document.createElement("div");
+        square.className = "square " + ((row + col) % 2 === 0 ? "white" : "black");
+
+        // Create and place chess pieces
+        if (row === 1) {
+          square.innerHTML = '<div class="chess-piece">&#9823;</div>'; // White pawn (♙)
+        } else if (row === 6) {
+          square.innerHTML = '<div class="chess-piece">&#9817;</div>'; // Black pawn (♟)
+        } else if (row === 0 || row === 7) {
+          switch (col) {
+            case 0:
+            case 7:
+              square.innerHTML = '<div class="chess-piece">&#9820;</div>'; // Rook (♜)
+              break;
+            case 1:
+            case 6:
+              square.innerHTML = '<div class="chess-piece">&#9822;</div>'; // Knight (♞)
+              break;
+            case 2:
+            case 5:
+              square.innerHTML = '<div class="chess-piece">&#9821;</div>'; // Bishop (♝)
+              break;
+            case 3:
+              square.innerHTML = '<div class="chess-piece">&#9819;</div>'; // Queen (♛)
+              break;
+            case 4:
+              square.innerHTML = '<div class="chess-piece">&#9818;</div>'; // King (♚)
+              break;
+          }
+        }
+
+        chessboard.appendChild(square);
+      }
+    }
+  </script>
+</body>
 </html>
